@@ -1,0 +1,21 @@
+---
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Setup AWS Resources for an example DynamoDb table
+Parameters:
+  ExampleTableName:
+    Description: Name of the example DynamoDb table
+    Type: String
+
+Resources:
+  DataContractTable:
+    Type: AWS::CloudFormation::Stack
+    Properties:
+      TemplateURL: http://yaml-cfn-templates.s3.amazonaws.com/snippets/dynamodb-simple-table.yaml
+      TimeoutInMinutes: '1'
+      Parameters:
+        TableName: !Ref ExampleTableName
+        TableIdColumnName: 'id'
+Outputs:
+  AwsRegion:
+    Description: AwsRegion
+    Value: !Ref AWS::Region
